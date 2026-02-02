@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+	struct Node *lc;
+	int data;
+	struct Node *rc;
+};
+struct Node *insert(int data) {
+	struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
+	newNode->lc=NULL;
+	newNode->data=data;
+	newNode->rc=NULL;
+
+}
+struct Node*BST(struct Node* root, int data){
+    if(root==NULL){
+        return insert(data);
+    }
+    else{
+        if(data<root->data){
+            root->lc=BST(root->lc,data);
+        }
+        else{
+            root->rc=BST(root->rc,data);
+        }
+    }
+    return root;
+}
+int main() {
+    struct Node*root=NULL;
+    int data;
+    printf("enter seven values for tree creation\n");
+    
+    for(int i=1;i<8;i++){
+        scanf("%d",&data);
+        root=BST(root,data);
+    }
+    inOrder(root);
+}
+ /* to check if entered vsalue is correct or check for errors lets traverse it using using in-order*/
+ inOrder(root)
+ {
+     
+     if(root==NULL)
+     return;
+     else{
+         inOrder(root->lc);
+         printf("%d",root->data);
+         inOrder(root->rc);
+     }
+ }
