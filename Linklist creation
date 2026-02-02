@@ -1,0 +1,20 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+  struct Node{
+    struct Node *lc;
+    int data;
+    struct Node *rc;
+};
+    struct Node *insert(int data){
+        struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
+        newNode->lc=NULL;
+        newNode->data=data;
+        newNode->rc=NULL;
+        
+    }
+int main(){
+
+}
