@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node{
+struct node *lc;
+int data;
+struct node *rc;
+};
+struct node *createnode(int data){
+    struct node *newnode=(struct node*)malloc(sizeoff(struct node));
+    newnode->lc=NULL;
+    newnode->data=data;
+    newnode->rc=NULL;
+    return newnode;
+}
+struct node* BST(struct node* root){
+    if (root==NULL){
+        return createnode(data);
+    }
+    else{
+        if(data<root->data){
+            root->lc=BST(root->lc,data));
+        }
+    }
+    retrun root;
+}
+void inorder(struct node *root){
+    if (root==NULL){
+        inorder(root->lc);
+        printf("%d" ,root->lc);
+        inorder(root->lc);
+    }
+}
+int main(){
+    struct node *root=NULL;
+    int data;
+    printf("enter 9 values of tree");
+    for(int i=1;i<=9;i++){
+        root=BST(root,data);
+    }
+    inorder(root);
+    
+    
+    
+    
+    
+    
+    
+}
