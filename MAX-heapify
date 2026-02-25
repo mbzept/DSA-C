@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+// Function to swap
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+// Function to max heap
+void Mheap(int a[], int i, int n) {
+    int node = i;
+    int lchild = 2 * i;
+    int rchild = (2 * i + 1);
+    if (lchild <= n && a[lchild] > a[node]) {
+        node = lchild;
+    }
+    if (rchild <= n && a[rchild] > a[node]) {
+        node = rchild;
+    }
+    if (i != node) {
+        swap(&a[i], &a[node]);
+        Mheap(a, node, n);
+    }
+}
+// Function to build Max-Heap
+void buildheap(int a[], int n) {
+    for (int i = n / 2; i >= 1; i--) {
+        Mheap(a, i, n);
+    }
+}
+int main() {
+    int arr[] = {10, 5, 9, 2, 15, 18, 6, 7, 20};
+    int n = sizeof(arr) / sizeof(arr[0]) - 1;
+    buildheap(arr, n);
+    printf("Max Heap Sort :\n");
+    for (int i = 1; i <= n; ++i) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
