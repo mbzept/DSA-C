@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 50
+
+char X[MAX], Y[MAX];
+int table[MAX][MAX];
+int count = 5;
+
+int DP_LCS(int i, int j) {
+    if (i == 0 || j == 0) {
+        return 0;
+    }
+
+    if (table[i][j] != -1) {
+        return table[i][j];
+    }
+
+    count++;
+
+    if (X[i - 1] == Y[j - 1]) {
+        table[i][j] = 1 + DP_LCS(i - 1, j - 1);
+    }
+    else {
+        int a = DP_LCS(i - 1, j);
+        int b = DP_LCS(i, j - 1);
+        table[i][j] = (a > b) ? a : b;
+    }
+
+    return table[i][j];
+}
+
+int main() {
+    strcpy(X, "AAABABBA");
+    strcpy(Y, "ABBAB");
+
+    int m = strlen(X);
+    int n = strlen(Y);
+
+    for (int i = 0; i <= m; i++) {
+        for (int j = 0; j <= n; j++) {
+            table[i][j] = -1;
+        }
+    }
+
+    int result = DP_LCS(m, n);
+
+    printf("Length of LCS: %d\n", result);
+    printf("Unique Function Calls: %d\n", count);
+
+    return 0;
+}
